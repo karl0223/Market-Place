@@ -13,7 +13,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 
-class Items(models.Model):
+class Item(models.Model):
     category = models.ForeignKey(
         Category, related_name="items", on_delete=models.CASCADE
     )

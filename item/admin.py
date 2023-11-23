@@ -10,7 +10,7 @@ class CatergoryAdmin(admin.ModelAdmin):
     search_fields = ["name__istartswith"]
 
 
-@admin.register(models.Items)
+@admin.register(models.Item)
 class ItemsAdmin(admin.ModelAdmin):
     autocomplete_fields = ["category", "created_by"]
     list_display = [
