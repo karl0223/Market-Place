@@ -24,7 +24,6 @@ from core.views import login, signup
 urlpatterns = [
     path("", include("core.urls")),
     path("items/", include("item.urls")),
-    path("login/", login, name="login"),
-    path("signup/", signup, name="signup"),
+    path("dashboard/", include("dashboard.urls")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

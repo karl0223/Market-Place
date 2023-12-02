@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "marketplace",
     "core",
+    "dashboard",
     "item",
 ]
 
