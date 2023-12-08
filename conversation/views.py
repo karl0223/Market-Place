@@ -2,9 +2,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from item.models import Item
 from .models import Conversation
 from .forms import ConversationMessageForm
+from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
+@login_required
 def new_conversation(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
 
@@ -32,9 +33,16 @@ def new_conversation(request, item_pk):
             conversation_message.created_by = request.user
             conversation_message.save()
 
-            return redirect("item:detal", pk=item_pk)
+            return redirect("item:detail", pk=item_pk)
 
     else:
         form = ConversationMessageForm()
 
     return render(request, "conversation/new.html", {"form": form})
+
+
+@login_required
+def inbox(request):
+    conversations = Conversation.objects.filter(members__in=[request.user.id])
+
+    return render(request, "conversation/inbox.html", {"conversations": conversations})
