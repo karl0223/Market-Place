@@ -33,6 +33,11 @@
               class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"
               >Dashboard</a
             >
+            <a
+              href="{% url 'core:logout' %}"
+              class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-amber-700"
+              >Logout</a
+            >
         {% else %}
           <a
             href="{% url 'core:signup' %}"
