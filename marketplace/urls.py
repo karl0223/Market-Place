@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 from core.views import login, signup
+from marketplace.settings import common
 
 urlpatterns = [
     path("", include("core.urls")),

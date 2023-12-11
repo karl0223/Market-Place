@@ -33,11 +33,10 @@
               class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"
               >Dashboard</a
             >
-            <a
-              href="{% url 'core:logout' %}"
-              class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-amber-700"
-              >Logout</a
-            >
+            <a href="{% url 'core:logout' %}" class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-amber-700" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" method="post" action="{% url 'core:logout' %}" style="display: none;">
+                {% csrf_token %}
+            </form>
         {% else %}
           <a
             href="{% url 'core:signup' %}"

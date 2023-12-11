@@ -10,6 +10,7 @@ psycopg2 = "*"
 gunicorn = "*"
 waitress = "*"
 dj-database-url = "*"
+whitenoise = "*"
 
 [dev-packages]
 
