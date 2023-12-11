@@ -7,6 +7,9 @@ name = "pypi"
 django = "*"
 pillow = "*"
 psycopg2 = "*"
+gunicorn = "*"
+waitress = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
