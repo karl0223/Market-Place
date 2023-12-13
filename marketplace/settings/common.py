@@ -50,7 +50,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "storages.middleware.StaticServeStaticFilesMiddleware",
 ]
 
 ROOT_URLCONF = "marketplace.urls"
