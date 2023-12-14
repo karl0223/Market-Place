@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from item.models import Category, Item
 from .forms import SignupForm
@@ -32,3 +32,16 @@ def signup(request):
 
 def login(request):
     return render(request, "core/login.html")
+
+
+def category_items(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    items = Item.objects.filter(is_sold="False", category=category)[0:6]
+    categories = Category.objects.all()
+
+    return render(
+        request,
+        "core/category_items.html",
+        context={"categories": categories, "items": items},
+    )

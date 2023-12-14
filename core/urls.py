@@ -7,6 +7,7 @@ app_name = "core"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("category/<int:category_id>/", views.category_items, name="category"),
     path("contact/", views.contact, name="contact"),
     path("signup/", views.signup, name="signup"),
     path(
