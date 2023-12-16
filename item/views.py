@@ -32,7 +32,7 @@ def items(request):
 
 
 def detail(request, pk):
-    item = get_object_or_404(Item, pk=pk)
+    item = get_object_or_404(Item.objects.select_related("created_by"), pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(
         pk=pk
     )[0:3]
