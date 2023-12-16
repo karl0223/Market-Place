@@ -1,3 +1,4 @@
+from django.db.models.aggregates import Count
 from django.shortcuts import redirect, render, get_object_or_404
 
 from item.models import Category, Item
@@ -6,7 +7,7 @@ from .forms import SignupForm
 
 def index(request):
     items = Item.objects.filter(is_sold="False")[0:6]
-    categories = Category.objects.all()
+    categories = Category.objects.annotate(items_count=Count("items"))
     return render(
         request, "core/index.html", context={"categories": categories, "items": items}
     )
@@ -38,7 +39,7 @@ def category_items(request, category_id):
     category = get_object_or_404(Category, id=category_id)
 
     items = Item.objects.filter(is_sold="False", category=category)[0:6]
-    categories = Category.objects.all()
+    categories = Category.objects.annotate(items_count=Count("items"))
 
     return render(
         request,
