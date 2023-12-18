@@ -31,6 +31,34 @@ class Item(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        # Open the uploaded image file
+        img = Image.open(self.image)
+
+        # Resize the image to 1920x1080 pixels
+        new_width = 1920
+        new_height = 1080
+        resized_img = img.resize((new_width, new_height), Image.LANCZOS)
+
+        # Save the resized image to a BytesIO buffer
+        buffer = BytesIO()
+        resized_img.save(buffer, format="JPEG")
+
+        # Create an InMemoryUploadedFile
+        resized_image = InMemoryUploadedFile(
+            buffer,
+            None,
+            f"{self.image.name.split('/')[-1]}",
+            "image/jpeg",
+            buffer.tell(),
+            None,
+        )
+
+        # Update the model's image field with the resized image
+        self.image = resized_image
+
+        super().save(*args, **kwargs)
+
     # def resize_image(self, original_image, target_width, target_height):
     #     # Open the uploaded image file
     #     img = Image.open(original_image)
