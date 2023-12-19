@@ -21,21 +21,39 @@
   </div>
 </div>
 
-  <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Categories</h2>
+ <!-- Pagination -->
+ <div class="pagination text-center my-4">
+  <span class="step-links">
+    {% if items.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ items.previous_page_number }}">previous</a>
+    {% endif %}
 
-    <div class="grid grid-cols-3 gap-3">
-      {% for category in categories %}
-      <div>
-        <a href="{% url 'core:category' category.id %}">
-          <div class="p-6 bg-white rounded-b-xl">
-            <h2 class="text-2xl">{{ category.name }}</h2>
-            <p class="text-gray-500">{{ category.items_count }} items</p>
-          </div>
-        </a>
-      </div>
-      {% endfor %}
+    <span class="current mx-4">
+      Page {{ items.number }} of {{ items.paginator.num_pages }}.
+    </span>
+
+    {% if items.has_next %}
+      <a href="?page={{ items.next_page_number }}">next</a>
+      <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-12 text-2xl text-center">Categories</h2>
+
+  <div class="grid grid-cols-3 gap-3">
+    {% for category in categories %}
+    <div>
+      <a href="{% url 'core:category' category.id %}">
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl">{{ category.name }}</h2>
+          <p class="text-gray-500">{{ category.items_count }} items</p>
+        </div>
+      </a>
     </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
