@@ -40,6 +40,9 @@ class Item(models.Model):
         new_height = 1080
         resized_img = img.resize((new_width, new_height), Image.LANCZOS)
 
+        if resized_img.mode in ("RGBA", "P"):
+            resized_img = resized_img.convert("RGB")
+
         # Save the resized image to a BytesIO buffer
         buffer = BytesIO()
         resized_img.save(buffer, format="JPEG")
