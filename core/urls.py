@@ -10,6 +10,7 @@ urlpatterns = [
     path("category/<int:category_id>/", views.category_items, name="category"),
     path("contact/", views.contact, name="contact"),
     path("signup/", views.signup, name="signup"),
+    path("about/", views.about, name="about"),
     path(
         "login/",
         auth_views.LoginView.as_view(

@@ -55,6 +55,10 @@ def login(request):
     return render(request, "core/login.html")
 
 
+def about(request):
+    return render(request, "core/about.html")
+
+
 def category_items(request, category_id):
     category = get_object_or_404(Category, id=category_id)
 
