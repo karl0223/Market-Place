@@ -21,7 +21,7 @@ To run this project locally, follow these steps:
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your-username/market-place.git
+    git clone https://github.com/karl0223/Market-Place.git
     cd market-place
     ```
 
