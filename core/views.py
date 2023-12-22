@@ -63,6 +63,10 @@ def policy(request):
     return render(request, "core/policy.html")
 
 
+def terms_of_use(request):
+    return render(request, "core/tos.html")
+
+
 def category_items(request, category_id):
     category = get_object_or_404(Category, id=category_id)
 

@@ -11,7 +11,8 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("signup/", views.signup, name="signup"),
     path("about/", views.about, name="about"),
-    path("policy/", views.policy, name="policy"),
+    path("privacy-policy/", views.policy, name="policy"),
+    path("terms-of-use/", views.terms_of_use, name="tos"),
     path(
         "login/",
         auth_views.LoginView.as_view(
