@@ -1,6 +1,8 @@
 from django.db.models.aggregates import Count
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from item.models import Category, Item
 from .forms import SignupForm
 
@@ -34,6 +36,21 @@ def index(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        form_data = {
+            "name": name,
+            "email": email,
+            "message": message,
+        }
+
+        print(form_data)
+
+        return render(request, "core/thank-you.html")
+
     return render(request, "core/contact.html")
 
 
