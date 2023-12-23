@@ -18,7 +18,16 @@
     </p>
 
     <h2 class="text-2xl font-semibold mt-6 mb-4">Send Us a Message</h2>
-    <form action="{% url 'core:contact' %}" method="post" onsubmit="return validateForm()" class="space-y-4">
+
+    <form action="{% url 'core:contact' %}" method="post" class="space-y-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-700">Send Message</button>
+  </form>
+  
+
+  
+    <!-- <form action="{% url 'core:contact' %}" method="post" onsubmit="return validateForm()" class="space-y-4">
         {% csrf_token %}
     
         <label for="name" class="block text-lg font-medium text-gray-700">Name:</label>
@@ -31,10 +40,10 @@
         <textarea id="message" name="message" rows="4" class="border border-gray-300 p-2 w-full" required></textarea>
     
         <button type="submit" class="bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-700">Send Message</button>
-    </form>
+    </form> -->
   </section>
 
-  <script>
+  <!-- <script>
     function validateForm() {
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
@@ -48,5 +57,5 @@
         // Continue with form submission
         return true;
     }
-</script>
+</script> -->
 {% endblock %}

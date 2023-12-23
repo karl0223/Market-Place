@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from item.models import Category, Item
 from .forms import SignupForm
+from conversation.forms import ConcernMessageForm
 
 
 def index(request):
@@ -37,21 +38,16 @@ def index(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
+        form = ConcernMessageForm(request.POST)
 
-        form_data = {
-            "name": name,
-            "email": email,
-            "message": message,
-        }
-
-        print(form_data)
+        if form.is_valid():
+            form.save()
 
         return render(request, "core/thank-you.html")
+    else:
+        form = ConcernMessageForm()
 
-    return render(request, "core/contact.html")
+    return render(request, "core/contact.html", {"form": form})
 
 
 def signup(request):

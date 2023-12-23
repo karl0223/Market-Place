@@ -25,3 +25,10 @@ class ConversationMessage(models.Model):
     created_by = models.ForeignKey(
         User, related_name="created_messages", on_delete=models.CASCADE
     )
+
+
+class ConcernMessage(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
