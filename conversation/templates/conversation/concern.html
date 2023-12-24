@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Concerns {% endblock %}
+
+{% block content %}
+<h1 class="mb-6 text-3xl">Concerns</h1>
+
+{% for message in messages %}
+    <div class="space-y-6">
+        <div class="p-6 m-4 flex bg-gray-100 rounded-xl">
+            <div>
+                <p class="mb-4"><strong>{{ message.name }}</strong> | {{ message.created_at }}</p>
+                <p>{{ message.message }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

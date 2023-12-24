@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from item.models import Item
-from .models import Conversation
+from .models import Conversation, ConcernMessage
 from .forms import ConversationMessageForm
 from django.contrib.auth.decorators import login_required
 
@@ -73,3 +73,10 @@ def detail(request, pk):
         "conversation/detail.html",
         {"conversation": conversation, "form": form},
     )
+
+
+@login_required
+def concern_messages(request):
+    messages = ConcernMessage.objects.all()
+
+    return render(request, "conversation/concern.html", {"messages": messages})
