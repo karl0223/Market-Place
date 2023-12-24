@@ -23,6 +23,13 @@
         <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
 
         {% if request.user.is_authenticated %}
+          {% if request.user.is_staff %}
+            <a
+              href="#"
+              class="px-6 py-3 text-lg font-semibold bg-orange-500 text-white rounded-xl hover:bg-orange-700"
+              >Concerns</a
+            >
+          {% endif %}
           <a
               href="{% url 'conversation:inbox' %}"
               class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"
