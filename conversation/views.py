@@ -80,3 +80,11 @@ def concern_messages(request):
     messages = ConcernMessage.objects.all()
 
     return render(request, "conversation/concern.html", {"messages": messages})
+
+
+@login_required
+def delete_concern_message(request, pk):
+    message = get_object_or_404(ConcernMessage, pk=pk)
+    message.delete()
+
+    return redirect("conversation:concern")
