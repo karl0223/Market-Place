@@ -83,6 +83,12 @@ def concern_messages(request):
 
 
 @login_required
+def concern_action(request, email):
+    print(f"Email sent: {email}")
+    return redirect("conversation:concern")
+
+
+@login_required
 def delete_concern_message(request, pk):
     message = get_object_or_404(ConcernMessage, pk=pk)
     message.delete()
