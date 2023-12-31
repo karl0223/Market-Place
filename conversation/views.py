@@ -84,7 +84,7 @@ def concern_messages(request):
 
 @login_required
 def concern_action(request, email):
-    print(f"Email sent: {email}")
+    print(f"Email sent: {email}.")
     return redirect("conversation:concern")
 
 
