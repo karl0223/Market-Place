@@ -13,9 +13,56 @@
                 <p>{{ message.message }}</p>
             </div>
             <div class="flex ml-auto">
-                <a href="{% url 'conversation:action' message.email %}" class="px-6 py-3 text-lg font-semibold bg-orange-500 text-white rounded-xl hover:bg-orange-700 w-24 h-12 text-center">Action</a>
+                <button onclick="openModal()" class="px-6 py-3 text-lg font-semibold bg-orange-500 text-white rounded-xl hover:bg-orange-700 w-24 h-12 text-center">Action</button>
                 <a href="{% url 'conversation:delete' message.id %}" class="ml-4 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700 w-24 h-12 text-center">Delete</a>
             </div>
+        </div>
     </div>
 {% endfor %}
+
+{% include 'conversation/modal.html' %}
+
+<script>
+    // core/static/core/script.js
+
+    function openModal() {
+      document.getElementById("myModal").style.display = "flex";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    function submitModal() {
+      const actionData = document.getElementById("modalInput").value;
+
+      // Make an AJAX request to send the data to the backend
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/submit-action/", true);
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Handle the response from the backend
+          console.log(xhr.responseText);
+          closeModal();
+        }
+      };
+
+      const data = JSON.stringify({ action_data: actionData });
+      xhr.send(data);
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function (event) {
+      const modal = document.getElementById("myModal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+      }
+    };
+
+</script>
 {% endblock %}
