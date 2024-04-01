@@ -3,6 +3,9 @@ from item.models import Item
 from .models import Conversation, ConcernMessage
 from .forms import ConversationMessageForm
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+import json
 
 
 @login_required
@@ -94,3 +97,15 @@ def delete_concern_message(request, pk):
     message.delete()
 
     return redirect("conversation:concern")
+
+
+@require_POST
+def submit_action(request, email):
+    data = json.loads(request.body)
+    action_data = data.get("action_data")
+
+    print(action_data)
+
+    # Process the action_data as needed (save to the database, etc.)
+
+    return JsonResponse({"message": "Action received successfully"})

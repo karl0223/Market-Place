@@ -11,4 +11,5 @@ urlpatterns = [
     path("concern/", views.concern_messages, name="concern"),
     path("<str:email>/action", views.concern_action, name="action"),
     path("<int:pk>/delete", views.delete_concern_message, name="delete"),
+    path("submit-action/<str:email>/", views.submit_action, name="submit_action"),
 ]
